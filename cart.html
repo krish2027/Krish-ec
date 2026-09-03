@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Novax. — Your Cart</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0b0d13; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+    .glass-card { background: rgba(18, 21, 31, 0.72); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.07); }
+    .cart-item-card { background: #11151f; border: 1px solid rgba(255, 255, 255, 0.06); transition: border-color 0.2s ease; }
+    .cart-item-card:hover { border-color: rgba(255, 255, 255, 0.12); }
+    .btn-checkout { background: linear-gradient(90deg, #6c47ff 0%, #5867fe 100%); box-shadow: 0 8px 24px -4px rgba(108, 71, 255, 0.5); transition: all 0.2s ease; }
+    .btn-checkout:hover { background: linear-gradient(90deg, #7c58ff 0%, #6b77fe 100%); transform: translateY(-1px); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+  <header class="w-full max-w-7xl mx-auto px-6 sm:px-8 pt-8 pb-4 flex items-center justify-between z-20">
+    <a class="text-2xl font-extrabold tracking-tight" href="index.html">Novax<span class="text-purple-500">.</span></a>
+    <nav class="hidden md:flex items-center space-x-10 text-sm font-medium text-gray-300">
+      <a class="hover:text-purple-400 transition" href="index.html">Home</a>
+      <a class="hover:text-purple-400 transition" href="shop.html">Shop</a>
+      <a class="hover:text-purple-400 transition" href="about.html">About</a>
+      <a class="hover:text-purple-400 transition" href="contact.html">Contact</a>
+    </nav>
+    <div class="flex items-center space-x-4 sm:space-x-6">
+      <a href="cart.html" class="relative text-purple-400 p-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        </svg>
+        <span class="absolute top-1 right-0 transform translate-x-1 -translate-y-1 bg-purple-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-[#0b0d13]" id="nav-badge">
+          0
+        </span>
+      </a>
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="hidden md:hidden glass-card mx-6 rounded-2xl p-5 space-y-4 text-center text-sm z-30">
+    <a href="index.html" class="block text-gray-300 hover:text-white">Home</a>
+    <a href="shop.html" class="block text-gray-300 hover:text-white">Shop</a>
+    <a href="about.html" class="block text-gray-300 hover:text-white">About</a>
+    <a href="contact.html" class="block text-gray-300 hover:text-white">Contact</a>
+  </nav>
+
+  <main class="flex-1 w-full max-w-7xl mx-auto px-6 sm:px-8 py-8">
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-8">Your Cart</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-8 space-y-4" id="cart-items-container">
+        <div class="cart-item-card rounded-2xl p-8 text-center text-gray-400 text-sm">Loading cart...</div>
+      </div>
+      <div class="lg:col-span-4">
+        <div class="cart-item-card rounded-2xl p-6 space-y-6">
+          <h2 class="text-lg font-bold text-white tracking-tight">Order Summary</h2>
+          <div class="space-y-3.5 text-sm">
+            <div class="flex justify-between items-center text-gray-400">
+              <span>Subtotal</span>
+              <span class="font-semibold text-white" id="summary-subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center text-gray-400">
+              <span>Shipping</span>
+              <span class="font-semibold text-emerald-400">Free</span>
+            </div>
+            <div class="flex justify-between items-center text-gray-400">
+              <span>Tax (10%)</span>
+              <span class="font-semibold text-white" id="summary-tax">$0.00</span>
+            </div>
+          </div>
+          <div class="border-t border-white/10 pt-4 flex justify-between items-center">
+            <span class="text-lg font-bold text-white">Total</span>
+            <span class="text-2xl font-extrabold text-white tracking-tight" id="summary-total">$0.00</span>
+          </div>
+          <button class="btn-checkout w-full py-3.5 rounded-xl text-sm font-semibold text-white tracking-wide" id="checkout-btn">
+            Proceed to Checkout
+          </button>
+          <a class="block text-center text-xs font-semibold text-gray-400 hover:text-white transition pt-1" href="shop.html">
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkout = document.getElementById('checkout-btn');
+      if (checkout) {
+        checkout.addEventListener('click', () => {
+          const cart = JSON.parse(localStorage.getItem('novax-cart') || '[]');
+          if (!cart.length) {
+            alert('Your cart is empty. Add a product before checkout.');
+            return;
+          }
+          alert('Order placed successfully! Connect your Stripe/PayPal API here.');
+          localStorage.removeItem('novax-cart');
+          location.reload();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

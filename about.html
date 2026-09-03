@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novax. — About Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{background:#0b0d13;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+    .gradient{background:linear-gradient(135deg,#a770ef,#cf8bf3 45%,#68b8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .glass{background:rgba(18,21,31,.72);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07)}
+    .orb{animation:float 5s ease-in-out infinite}
+    @keyframes float{50%{transform:translateY(-18px) rotate(8deg)}}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+<header class="w-full max-w-7xl mx-auto px-6 sm:px-8 pt-8 pb-4 flex items-center justify-between z-20">
+  <a href="index.html" class="text-2xl font-extrabold tracking-tight">Novax<span class="text-purple-500">.</span></a>
+  <nav class="hidden md:flex gap-10 text-sm text-gray-300">
+    <a href="index.html" class="hover:text-white transition">Home</a>
+    <a href="shop.html" class="hover:text-white transition">Shop</a>
+    <a href="about.html" class="text-white font-semibold">About</a>
+    <a href="contact.html" class="hover:text-white transition">Contact</a>
+  </nav>
+  <div class="flex items-center space-x-4 sm:space-x-6">
+    <a href="cart.html" class="relative text-gray-300 hover:text-white transition p-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+      </svg>
+      <span id="cart-counter" class="absolute top-1 right-0 transform translate-x-1 -translate-y-1 bg-purple-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-[#0b0d13]">
+        0
+      </span>
+    </a>
+    <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<nav id="mobile-nav" class="hidden md:hidden glass mx-6 rounded-2xl p-5 space-y-4 text-center text-sm z-30">
+  <a href="index.html" class="block text-gray-300 hover:text-white">Home</a>
+  <a href="shop.html" class="block text-gray-300 hover:text-white">Shop</a>
+  <a href="about.html" class="block text-purple-400 font-semibold">About</a>
+  <a href="contact.html" class="block text-gray-300 hover:text-white">Contact</a>
+</nav>
+
+<main class="max-w-7xl mx-auto px-6 sm:px-8 py-12 flex-1">
+  <section class="grid lg:grid-cols-2 gap-14 items-center min-h-[460px]">
+    <div>
+      <span class="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">ABOUT NOVAX</span>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight mt-5">Innovation.<br><span class="gradient">Quality. Trust.</span></h1>
+      <p class="text-gray-400 leading-7 max-w-xl mt-7">Novax brings clean aesthetics together with immersive real-time WebGL experiences. Browse performance lifestyle tech curated for peak everyday functionality.</p>
+      <div class="grid grid-cols-3 gap-4 mt-10">
+        <div class="glass rounded-2xl p-5"><b class="text-2xl">2K+</b><p class="text-xs text-gray-400 mt-1">Customers</p></div>
+        <div class="glass rounded-2xl p-5"><b class="text-2xl">1K+</b><p class="text-xs text-gray-400 mt-1">Products</p></div>
+        <div class="glass rounded-2xl p-5"><b class="text-2xl">99%</b><p class="text-xs text-gray-400 mt-1">Satisfaction</p></div>
+      </div>
+    </div>
+    <div class="relative flex justify-center">
+      <div class="orb w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-purple-600/30 to-blue-500/10 blur-sm border border-purple-400/20 flex items-center justify-center">
+        <div class="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full glass flex items-center justify-center text-6xl md:text-7xl">✦</div>
+      </div>
+    </div>
+  </section>
+  <section class="grid md:grid-cols-3 gap-6 mt-14">
+    <div class="glass rounded-2xl p-7"><div class="text-2xl mb-4">◈</div><h2 class="font-bold text-lg">Curated Products</h2><p class="text-sm text-gray-400 mt-2 leading-6">A focused catalog of lifestyle gear crafted to last.</p></div>
+    <div class="glass rounded-2xl p-7"><div class="text-2xl mb-4">◎</div><h2 class="font-bold text-lg">Immersive Shopping</h2><p class="text-sm text-gray-400 mt-2 leading-6">Real-time 3D models let you inspect every angle directly from your browser.</p></div>
+    <div class="glass rounded-2xl p-7"><div class="text-2xl mb-4">✓</div><h2 class="font-bold text-lg">Customer First</h2><p class="text-sm text-gray-400 mt-2 leading-6">Lightning-fast customer support with quick global fulfillment.</p></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

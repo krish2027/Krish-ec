@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novax. — Air Max 2024 Product Detail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  <style>
+    body { background-color: #0b0d13; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+    .glass-card { background: rgba(18, 21, 31, 0.72); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.07); }
+    .thumb-btn { background: #11151f; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.2s ease; }
+    .thumb-btn.active { border-color: rgba(109, 93, 252, 0.8); box-shadow: 0 0 12px rgba(109, 93, 252, 0.25); }
+    .size-btn { background: #11151f; border: 1px solid rgba(255, 255, 255, 0.08); color: #9ca3af; transition: all 0.2s ease; }
+    .size-btn.active { background: #6d5dfc; border-color: #6d5dfc; color: #ffffff; box-shadow: 0 0 16px rgba(109, 93, 252, 0.4); }
+    .btn-add-cart { background: linear-gradient(90deg, #6c47ff 0%, #5867fe 100%); box-shadow: 0 8px 24px -4px rgba(108, 71, 255, 0.5); transition: all 0.2s ease; }
+    .btn-add-cart:hover { background: linear-gradient(90deg, #7c58ff 0%, #6b77fe 100%); transform: translateY(-1px); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+  <header class="w-full max-w-7xl mx-auto px-6 sm:px-8 pt-8 pb-4 flex items-center justify-between z-20">
+    <a href="index.html" class="text-2xl font-extrabold tracking-tight">Novax<span class="text-purple-500">.</span></a>
+    <nav class="hidden md:flex items-center space-x-10 text-sm font-medium text-gray-300">
+      <a href="index.html" class="hover:text-purple-400 transition">Home</a>
+      <a href="shop.html" class="hover:text-purple-400 transition">Shop</a>
+      <a href="about.html" class="hover:text-purple-400 transition">About</a>
+      <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
+    </nav>
+    <div class="flex items-center space-x-4 sm:space-x-6">
+      <a href="cart.html" class="relative text-gray-300 hover:text-white transition p-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        </svg>
+        <span id="cart-counter" class="absolute top-1 right-0 transform translate-x-1 -translate-y-1 bg-purple-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-[#0b0d13]">
+          0
+        </span>
+      </a>
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="hidden md:hidden glass-card mx-6 rounded-2xl p-5 space-y-4 text-center text-sm z-30">
+    <a href="index.html" class="block text-gray-300 hover:text-white">Home</a>
+    <a href="shop.html" class="block text-purple-400 font-semibold">Shop</a>
+    <a href="about.html" class="block text-gray-300 hover:text-white">About</a>
+    <a href="contact.html" class="block text-gray-300 hover:text-white">Contact</a>
+  </nav>
+
+  <main class="flex-1 w-full max-w-7xl mx-auto px-6 sm:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <div class="lg:col-span-7 flex flex-col md:flex-row items-center gap-6 relative">
+      <div class="flex md:flex-col gap-3 order-2 md:order-1">
+        <button onclick="setCameraView('hero', this)" class="thumb-btn active w-14 h-14 rounded-xl flex items-center justify-center p-1.5 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=150&q=80" alt="Main View" class="object-contain max-h-full drop-shadow" />
+        </button>
+        <button onclick="setCameraView('side', this)" class="thumb-btn w-14 h-14 rounded-xl flex items-center justify-center p-1.5 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=150&q=80" alt="Side View" class="object-contain max-h-full rotate-45" />
+        </button>
+        <button onclick="setCameraView('top', this)" class="thumb-btn w-14 h-14 rounded-xl flex items-center justify-center p-1.5 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=150&q=80" alt="Top View" class="object-contain max-h-full -rotate-12" />
+        </button>
+      </div>
+
+      <div class="flex-1 w-full h-[360px] sm:h-[460px] md:h-[500px] rounded-3xl relative flex items-center justify-center order-1 md:order-2">
+        <div id="product-canvas-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+        <div class="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-widest text-gray-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md pointer-events-none">
+          3D Interactive • Drag To Rotate
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 space-y-6 lg:pl-6">
+      <div class="inline-block px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-gray-300">
+        Shoes
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Air Max 2024</h1>
+      <div class="flex items-center space-x-4">
+        <span class="text-2xl font-bold text-white">$199.99</span>
+        <span class="text-xs font-semibold text-emerald-400">✦ In Stock</span>
+      </div>
+      <p class="text-gray-400 text-sm leading-relaxed">
+        Step into futuristic comfort with the Air Max 2024. Lightweight responsive mesh cushioned with high-rebound translucent sole units.
+      </p>
+
+      <div class="space-y-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-gray-300">Select Size</span>
+        <div class="flex items-center space-x-3">
+          <button onclick="selectSize(this)" class="size-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl text-sm font-semibold flex items-center justify-center">7</button>
+          <button onclick="selectSize(this)" class="size-btn active w-11 h-11 sm:w-12 sm:h-12 rounded-xl text-sm font-semibold flex items-center justify-center">8</button>
+          <button onclick="selectSize(this)" class="size-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl text-sm font-semibold flex items-center justify-center">9</button>
+          <button onclick="selectSize(this)" class="size-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl text-sm font-semibold flex items-center justify-center">10</button>
+          <button onclick="selectSize(this)" class="size-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl text-sm font-semibold flex items-center justify-center">11</button>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-gray-300">Quantity</span>
+        <div class="inline-flex items-center bg-[#11151f] border border-white/10 rounded-xl px-3 py-1.5 space-x-4">
+          <button onclick="changeQty(-1)" class="text-gray-400 hover:text-white transition px-2 py-1 font-bold text-base">−</button>
+          <span id="qty-val" class="text-sm font-semibold text-white min-w-[14px] text-center">1</span>
+          <button onclick="changeQty(1)" class="text-gray-400 hover:text-white transition px-2 py-1 font-bold text-base">+</button>
+        </div>
+      </div>
+
+      <div class="space-y-4 pt-2">
+        <button onclick="handleAddToCart()" class="btn-add-cart w-full py-4 rounded-xl text-sm font-semibold text-white tracking-wide">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let scene, camera, renderer, controls;
+    let shoeRoot = new THREE.Group();
+    const container = document.getElementById('product-canvas-container');
+
+    function initDetailScene() {
+      const w = container.clientWidth || 300;
+      const h = container.clientHeight || 300;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100);
+      camera.position.set(0, 0.8, 4.8);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.enablePan = false;
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+      keyLight.position.set(4, 6, 4);
+      scene.add(keyLight);
+
+      const purpleGlow = new THREE.PointLight(0xa855f7, 5, 8);
+      purpleGlow.position.set(-0.2, -0.6, 0.5);
+      scene.add(purpleGlow);
+
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/MaterialsVariantsShoe/glTF/MaterialsVariantsShoe.gltf',
+        (gltf) => {
+          const model = gltf.scene;
+          model.scale.set(7.5, 7.5, 7.5);
+          model.position.set(0, -0.2, 0);
+          model.rotation.set(-0.28, 2.35, 0.35);
+          shoeRoot.add(model);
+          scene.add(shoeRoot);
+        },
+        undefined,
+        () => createProceduralFallback()
+      );
+
+      window.addEventListener('resize', onResize);
+    }
+
+    function createProceduralFallback() {
+      const group = new THREE.Group();
+      const sole = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.32, 0.9), new THREE.MeshPhysicalMaterial({ color: 0x9333ea, roughness: 0.2 }));
+      sole.position.y = -0.25;
+      group.add(sole);
+
+      const upper = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.55, 1.85, 32), new THREE.MeshStandardMaterial({ color: 0xdcdcdc }));
+      upper.rotation.z = Math.PI / 2.3;
+      upper.position.set(-0.05, 0.25, 0);
+      group.add(upper);
+
+      group.rotation.set(-0.28, 2.35, 0.35);
+      shoeRoot.add(group);
+      scene.add(shoeRoot);
+    }
+
+    function setCameraView(view, btn) {
+      document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (view === 'hero') camera.position.set(0, 0.8, 4.8);
+      if (view === 'side') camera.position.set(4.5, 0.4, 1.2);
+      if (view === 'top') camera.position.set(0.2, 5.0, 0.8);
+      controls.target.set(0, 0, 0);
+    }
+
+    function onResize() {
+      if (!container || !renderer || !camera) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+
+    let clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = clock.getElapsedTime();
+      if (shoeRoot) shoeRoot.position.y = Math.sin(time * 1.5) * 0.05;
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    function selectSize(button) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+    }
+
+    let qty = 1;
+    function changeQty(delta) {
+      qty = Math.max(1, qty + delta);
+      document.getElementById('qty-val').innerText = qty;
+    }
+
+    window.addEventListener('load', () => {
+      initDetailScene();
+      animate();
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

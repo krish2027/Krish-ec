@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novax. — Shop Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0b0d13; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+    .filter-pill-active { background: linear-gradient(135deg, #8a57ff 0%, #6842ff 100%); box-shadow: 0 4px 18px rgba(109, 93, 252, 0.45); color: #fff; }
+    .filter-pill-inactive { background: rgba(255, 255, 255, 0.04); color: #9ca3af; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .filter-pill-inactive:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .product-card { background: #11151f; border: 1px solid rgba(255, 255, 255, 0.06); transition: all 0.25s ease; }
+    .product-card:hover { transform: translateY(-4px); border-color: rgba(138, 87, 255, 0.35); box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.6); }
+    .btn-add-cart { background: linear-gradient(90deg, #6c47ff 0%, #5867fe 100%); transition: all 0.2s ease; }
+    .btn-add-cart:hover { background: linear-gradient(90deg, #7c58ff 0%, #6b77fe 100%); box-shadow: 0 6px 18px rgba(108, 71, 255, 0.45); }
+    .glass-card { background: rgba(18, 21, 31, 0.72); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.07); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+  <!-- Header -->
+  <header class="w-full max-w-7xl mx-auto px-6 sm:px-8 pt-8 pb-6 flex items-center justify-between z-20">
+    <a href="index.html" class="text-2xl font-extrabold tracking-tight">Novax<span class="text-purple-500">.</span></a>
+    <nav class="hidden md:flex items-center space-x-10 text-sm font-medium text-gray-400">
+      <a href="index.html" class="hover:text-white transition">Home</a>
+      <a href="shop.html" class="text-white hover:text-purple-400 transition font-semibold">Shop</a>
+      <a href="about.html" class="hover:text-white transition">About</a>
+      <a href="contact.html" class="hover:text-white transition">Contact</a>
+    </nav>
+    <div class="flex items-center space-x-4 sm:space-x-6">
+      <a href="cart.html" class="relative text-gray-300 hover:text-white transition p-2" aria-label="Cart">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        </svg>
+        <span id="cart-counter" class="absolute top-1 right-0 transform translate-x-1 -translate-y-1 bg-purple-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-[#0b0d13]">
+          0
+        </span>
+      </a>
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="hidden md:hidden glass-card mx-6 rounded-2xl p-5 space-y-4 text-center text-sm z-30">
+    <a href="index.html" class="block text-gray-300 hover:text-white">Home</a>
+    <a href="shop.html" class="block text-purple-400 font-semibold">Shop</a>
+    <a href="about.html" class="block text-gray-300 hover:text-white">About</a>
+    <a href="contact.html" class="block text-gray-300 hover:text-white">Contact</a>
+  </nav>
+
+  <main class="flex-1 w-full max-w-7xl mx-auto px-6 sm:px-8">
+    <div class="flex items-center space-x-3 py-6 overflow-x-auto">
+      <button onclick="filterCategory('all', this)" class="filter-btn filter-pill-active px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap">All</button>
+      <button onclick="filterCategory('shoes', this)" class="filter-btn filter-pill-inactive px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap">Shoes</button>
+      <button onclick="filterCategory('headphones', this)" class="filter-btn filter-pill-inactive px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap">Headphones</button>
+      <button onclick="filterCategory('watches', this)" class="filter-btn filter-pill-inactive px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap">Watches</button>
+      <button onclick="filterCategory('bags', this)" class="filter-btn filter-pill-inactive px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap">Bags</button>
+      <button onclick="filterCategory('accessories', this)" class="filter-btn filter-pill-inactive px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap">Accessories</button>
+    </div>
+
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2 pb-14">
+      <div class="product-card rounded-2xl p-5 flex flex-col justify-between" data-category="shoes">
+        <div class="w-full h-56 rounded-xl bg-gradient-to-b from-[#181d2a]/30 to-transparent flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80" alt="Air Max 2024" class="max-h-48 object-contain drop-shadow-[0_15px_20px_rgba(147,51,234,0.3)] filter contrast-110" />
+        </div>
+        <div class="pt-4 space-y-1">
+          <h3 class="text-base font-semibold text-white tracking-tight">Air Max 2024</h3>
+          <p class="text-sm text-gray-400 font-medium">$199.99</p>
+        </div>
+        <button class="btn-add-cart w-full mt-4 py-3 rounded-xl text-xs font-semibold tracking-wide text-white">Add to Cart</button>
+      </div>
+
+      <div class="product-card rounded-2xl p-5 flex flex-col justify-between" data-category="headphones">
+        <div class="w-full h-56 rounded-xl bg-gradient-to-b from-[#181d2a]/30 to-transparent flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80" alt="SoundPro X1" class="max-h-48 object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.6)]" />
+        </div>
+        <div class="pt-4 space-y-1">
+          <h3 class="text-base font-semibold text-white tracking-tight">SoundPro X1</h3>
+          <p class="text-sm text-gray-400 font-medium">$129.99</p>
+        </div>
+        <button class="btn-add-cart w-full mt-4 py-3 rounded-xl text-xs font-semibold tracking-wide text-white">Add to Cart</button>
+      </div>
+
+      <div class="product-card rounded-2xl p-5 flex flex-col justify-between" data-category="watches">
+        <div class="w-full h-56 rounded-xl bg-gradient-to-b from-[#181d2a]/30 to-transparent flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80" alt="Vision Watch" class="max-h-48 object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.6)]" />
+        </div>
+        <div class="pt-4 space-y-1">
+          <h3 class="text-base font-semibold text-white tracking-tight">Vision Watch</h3>
+          <p class="text-sm text-gray-400 font-medium">$249.99</p>
+        </div>
+        <button class="btn-add-cart w-full mt-4 py-3 rounded-xl text-xs font-semibold tracking-wide text-white">Add to Cart</button>
+      </div>
+
+      <div class="product-card rounded-2xl p-5 flex flex-col justify-between" data-category="bags">
+        <div class="w-full h-56 rounded-xl bg-gradient-to-b from-[#181d2a]/30 to-transparent flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" alt="Urban Backpack" class="max-h-48 object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.6)]" />
+        </div>
+        <div class="pt-4 space-y-1">
+          <h3 class="text-base font-semibold text-white tracking-tight">Urban Backpack</h3>
+          <p class="text-sm text-gray-400 font-medium">$89.99</p>
+        </div>
+        <button class="btn-add-cart w-full mt-4 py-3 rounded-xl text-xs font-semibold tracking-wide text-white">Add to Cart</button>
+      </div>
+
+      <div class="product-card rounded-2xl p-5 flex flex-col justify-between" data-category="headphones">
+        <div class="w-full h-56 rounded-xl bg-gradient-to-b from-[#181d2a]/30 to-transparent flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80" alt="Galaxy Buds" class="max-h-48 object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.6)]" />
+        </div>
+        <div class="pt-4 space-y-1">
+          <h3 class="text-base font-semibold text-white tracking-tight">Galaxy Buds</h3>
+          <p class="text-sm text-gray-400 font-medium">$99.99</p>
+        </div>
+        <button class="btn-add-cart w-full mt-4 py-3 rounded-xl text-xs font-semibold tracking-wide text-white">Add to Cart</button>
+      </div>
+
+      <div class="product-card rounded-2xl p-5 flex flex-col justify-between" data-category="accessories">
+        <div class="w-full h-56 rounded-xl bg-gradient-to-b from-[#181d2a]/30 to-transparent flex items-center justify-center overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80" alt="Tech Sunglasses" class="max-h-48 object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.6)]" />
+        </div>
+        <div class="pt-4 space-y-1">
+          <h3 class="text-base font-semibold text-white tracking-tight">Tech Sunglasses</h3>
+          <p class="text-sm text-gray-400 font-medium">$59.99</p>
+        </div>
+        <button class="btn-add-cart w-full mt-4 py-3 rounded-xl text-xs font-semibold tracking-wide text-white">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function filterCategory(category, buttonElement) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('filter-pill-active');
+        btn.classList.add('filter-pill-inactive');
+      });
+      buttonElement.classList.add('filter-pill-active');
+      buttonElement.classList.remove('filter-pill-inactive');
+
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.style.display = (category === 'all' || card.getAttribute('data-category') === category) ? 'flex' : 'none';
+      });
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
